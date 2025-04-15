@@ -1,4 +1,6 @@
 
+import { Card, CardContent } from "@/components/ui/card";
+
 const AboutUsSection = () => {
   return (
     <section id="nosotros" className="py-20 bg-gray-50">
@@ -9,13 +11,15 @@ const AboutUsSection = () => {
           </h2>
         </div>
         
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            En Cerebrum Flow somos un equipo apasionado por la tecnología, la estrategia digital y la automatización inteligente. 
-            Combinamos experiencia en IA, marketing y consultoría para ofrecer soluciones a medida que ayudan a negocios de todos 
-            los tamaños a crecer, optimizar procesos y destacar en el mundo digital.
-          </p>
-        </div>
+        <Card className="max-w-3xl mx-auto shadow-lg border border-gray-100 bg-white">
+          <CardContent className="pt-6">
+            <p className="text-lg text-gray-700 leading-relaxed text-center">
+              En Cerebrum Flow somos un equipo apasionado por la tecnología, la estrategia digital y la automatización inteligente. 
+              Combinamos experiencia en IA, marketing y consultoría para ofrecer soluciones a medida que ayudan a negocios de todos 
+              los tamaños a crecer, optimizar procesos y destacar en el mundo digital.
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

@@ -1,14 +1,7 @@
 
-import { ArrowUp } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-  
   const currentYear = new Date().getFullYear();
   
   return (
@@ -59,17 +52,16 @@ const Footer = () => {
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © {currentYear} Cerebrum Flow. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-4">
-            <a href="https://www.instagram.com/cerebrumflow" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-              </svg>
-            </a>
-            <button onClick={scrollToTop} className="flex items-center gap-2 text-cerebrum-blue hover:text-blue-400 transition-colors">
-              Volver arriba <ArrowUp size={16} />
-            </button>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-gray-400 text-sm mb-2">Síguenos</p>
+            <div className="flex items-center gap-4">
+              <a href="https://www.facebook.com/cerebrumflow.oficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
+                <Facebook size={24} />
+              </a>
+              <a href="https://www.instagram.com/cerebrumflow" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                <Instagram size={24} />
+              </a>
+            </div>
           </div>
         </div>
       </div>

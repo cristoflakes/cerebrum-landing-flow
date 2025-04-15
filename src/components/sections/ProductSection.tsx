@@ -1,6 +1,9 @@
-import { Brain, LineChart, BarChart4, MessageSquare, Briefcase, Users, Lightbulb, GraduationCap } from "lucide-react";
+
+import { Brain, LineChart, BarChart4, MessageSquare, Briefcase, Users, Lightbulb, GraduationCap, Search } from "lucide-react";
+
 const ProductSection = () => {
-  return <section id="soluciones" className="py-20 bg-white">
+  return (
+    <section id="soluciones" className="py-20 bg-white">
       <div className="section-padding">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -9,9 +12,9 @@ const ProductSection = () => {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Cada negocio es único. En Cerebrum Flow analizamos tus objetivos y diseñamos una estrategia inteligente, a medida. Automatización, marketing, consultoría o formación: tú eliges, nosotros lo hacemos realidad</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Servicio 1 */}
-          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100">
+          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-start gap-4">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-lg">
                 <Brain className="text-cerebrum-blue" size={28} />
@@ -44,7 +47,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 2 */}
-          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100">
+          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-start gap-4">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-lg">
                 <LineChart className="text-cerebrum-blue" size={28} />
@@ -77,7 +80,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 3 */}
-          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100">
+          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-start gap-4">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-lg">
                 <Briefcase className="text-cerebrum-blue" size={28} />
@@ -110,7 +113,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 4 */}
-          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100">
+          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-start gap-4">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-lg">
                 <GraduationCap className="text-cerebrum-blue" size={28} />
@@ -141,8 +144,43 @@ const ProductSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Servicio 5 - NUEVO: Investigación de mercado */}
+          <div className="bg-gray-50 rounded-xl p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all">
+            <div className="flex items-start gap-4">
+              <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-lg">
+                <Search className="text-cerebrum-blue" size={28} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Investigación de mercado</h3>
+                <p className="text-gray-600 mb-4">
+                  Recopilamos y analizamos datos para ayudarte a entender mejor a tu audiencia, identificar oportunidades y tomar decisiones estratégicas basadas en evidencia real.
+                </p>
+                <div className="grid grid-cols-2 gap-3 mt-6">
+                  <div className="flex items-center gap-2">
+                    <Users size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Análisis de audiencia</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <BarChart4 size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Estudio de competencia</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Lightbulb size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Tendencias de mercado</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <LineChart size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Informes detallados</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ProductSection;
