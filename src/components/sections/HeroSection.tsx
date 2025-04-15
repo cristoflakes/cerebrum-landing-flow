@@ -1,8 +1,12 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
+import { DiagnosticFormModal } from "@/components/DiagnosticFormModal";
 
 const HeroSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -23,17 +27,17 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button 
-              onClick={() => scrollTo('contacto')}
-              className="btn-primary flex items-center gap-2"
+              onClick={() => setIsModalOpen(true)}
+              className="bg-cerebrum-blue hover:bg-blue-700 text-white flex items-center gap-2"
             >
-              Contáctanos <ArrowRight size={16} />
+              Solicitar propuesta personalizada <ArrowRight size={16} />
             </Button>
             <Button 
-              onClick={() => scrollTo('producto')}
+              onClick={() => scrollTo('soluciones')}
               variant="outline"
-              className="btn-outline"
+              className="border-2 border-cerebrum-blue text-cerebrum-blue hover:bg-cerebrum-blue hover:text-white flex items-center gap-2"
             >
-              Conoce nuestros servicios
+              Ver Soluciones <ArrowDown size={16} />
             </Button>
           </div>
         </div>
@@ -42,14 +46,17 @@ const HeroSection = () => {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-cerebrum-blue to-blue-500 rounded-xl blur-lg opacity-75"></div>
             <div className="relative bg-white p-8 rounded-xl shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                alt="Cerebrum Flow AI Analytics" 
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2832&auto=format&fit=crop"
+                alt="Inteligencia Artificial en acción" 
                 className="w-full h-auto rounded-lg"
               />
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Modal form */}
+      <DiagnosticFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

@@ -6,10 +6,12 @@ import ProductSection from "@/components/sections/ProductSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingSection from "@/components/sections/PricingSection";
 import ContactSection from "@/components/sections/ContactSection";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Toaster />
       <Header />
       <main>
         <HeroSection />

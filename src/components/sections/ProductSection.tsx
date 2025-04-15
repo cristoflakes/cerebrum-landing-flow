@@ -12,14 +12,14 @@ import {
 
 const ProductSection = () => {
   return (
-    <section id="producto" className="py-20 bg-white">
+    <section id="soluciones" className="py-20 bg-white">
       <div className="section-padding">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Nuestros <span className="text-gradient">Servicios</span>
+            Soluciones a <span className="text-gradient">tu Medida</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Soluciones integrales para impulsar el crecimiento de tu empresa en la era digital
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            Cada negocio es único. En Cerebrum Flow analizamos tus objetivos y diseñamos una estrategia inteligente, a medida...
           </p>
         </div>
 

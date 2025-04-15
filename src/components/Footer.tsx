@@ -16,9 +16,16 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-1">
-            <h2 className="text-2xl font-bold mb-4">
-              Cerebrum<span className="text-cerebrum-blue">Flow</span>
-            </h2>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/cerebrum-flow-logo.png" 
+                alt="Cerebrum Flow Logo" 
+                className="h-10 w-10 mr-2"
+              />
+              <h2 className="text-2xl font-bold">
+                Cerebrum <span className="text-cerebrum-blue">Flow</span>
+              </h2>
+            </div>
             <p className="text-gray-400 mb-4">
               Transformando empresas con soluciones basadas en inteligencia artificial y estrategias digitales.
             </p>
@@ -27,10 +34,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Servicios</h3>
             <ul className="space-y-2">
-              <li><a href="#producto" className="text-gray-400 hover:text-white transition-colors">Automatización IA</a></li>
-              <li><a href="#producto" className="text-gray-400 hover:text-white transition-colors">Marketing Digital</a></li>
-              <li><a href="#producto" className="text-gray-400 hover:text-white transition-colors">Consultoría</a></li>
-              <li><a href="#producto" className="text-gray-400 hover:text-white transition-colors">Formación</a></li>
+              <li><a href="#soluciones" className="text-gray-400 hover:text-white transition-colors">Automatización IA</a></li>
+              <li><a href="#soluciones" className="text-gray-400 hover:text-white transition-colors">Marketing Digital</a></li>
+              <li><a href="#soluciones" className="text-gray-400 hover:text-white transition-colors">Consultoría</a></li>
+              <li><a href="#soluciones" className="text-gray-400 hover:text-white transition-colors">Formación</a></li>
             </ul>
           </div>
           
@@ -39,7 +46,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#home" className="text-gray-400 hover:text-white transition-colors">Sobre nosotros</a></li>
               <li><a href="#testimonios" className="text-gray-400 hover:text-white transition-colors">Testimonios</a></li>
-              <li><a href="#planes" className="text-gray-400 hover:text-white transition-colors">Planes</a></li>
+              <li><a href="#planes" className="text-gray-400 hover:text-white transition-colors">Soluciones</a></li>
               <li><a href="#contacto" className="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
             </ul>
           </div>
@@ -58,12 +65,27 @@ const Footer = () => {
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © {currentYear} Cerebrum Flow. Todos los derechos reservados.
           </p>
-          <button 
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-cerebrum-blue hover:text-blue-400 transition-colors"
-          >
-            Volver arriba <ArrowUp size={16} />
-          </button>
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://www.instagram.com/cerebrumflow" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Instagram"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <button 
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-cerebrum-blue hover:text-blue-400 transition-colors"
+            >
+              Volver arriba <ArrowUp size={16} />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

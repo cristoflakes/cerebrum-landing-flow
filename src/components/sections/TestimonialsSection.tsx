@@ -5,27 +5,11 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Carlos Rodríguez",
-    position: "CEO, Innova Tech",
+    name: "Gerley Moscoso",
+    position: "Director de Fisioquir, Centro de Capacitación en Quirofísica",
     image: "https://randomuser.me/api/portraits/men/1.jpg",
-    content: "Trabajar con Cerebrum Flow transformó nuestra operación diaria. La automatización con IA nos permitió reducir un 40% el tiempo dedicado a tareas administrativas.",
+    content: "Implementar inteligencia artificial y automatizaciones con Cerebrum Flow transformó por completo la forma en que nos comunicamos con nuestros alumnos. Ahora gestionamos las consultas desde redes sociales y WhatsApp de forma automática, sin perder el toque humano. La asesoría que recibimos fue clara, estratégica y totalmente personalizada.",
     rating: 5
-  },
-  {
-    id: 2,
-    name: "Laura Sánchez",
-    position: "Directora de Marketing, Grupo Evolve",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
-    content: "Las estrategias de marketing digital implementadas por el equipo de Cerebrum Flow aumentaron nuestro tráfico web en un 150% y las conversiones en un 60% en solo 3 meses.",
-    rating: 5
-  },
-  {
-    id: 3,
-    name: "Miguel Álvarez",
-    position: "CTO, Data Solutions",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
-    content: "La formación en IA y análisis de datos que recibió nuestro equipo fue excepcional. Ahora podemos tomar decisiones basadas en datos con confianza y precisión.",
-    rating: 4
   }
 ];
 
@@ -92,33 +76,37 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          <button 
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 bg-white rounded-full p-2 shadow-md text-cerebrum-blue hover:text-cerebrum-blue/80 transition-colors"
-            aria-label="Testimonio anterior"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button 
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 bg-white rounded-full p-2 shadow-md text-cerebrum-blue hover:text-cerebrum-blue/80 transition-colors"
-            aria-label="Testimonio siguiente"
-          >
-            <ChevronRight size={24} />
-          </button>
+          {testimonials.length > 1 && (
+            <>
+              <button 
+                onClick={prev}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 bg-white rounded-full p-2 shadow-md text-cerebrum-blue hover:text-cerebrum-blue/80 transition-colors"
+                aria-label="Testimonio anterior"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                onClick={next}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 bg-white rounded-full p-2 shadow-md text-cerebrum-blue hover:text-cerebrum-blue/80 transition-colors"
+                aria-label="Testimonio siguiente"
+              >
+                <ChevronRight size={24} />
+              </button>
 
-          <div className="flex justify-center mt-8 gap-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-cerebrum-blue' : 'bg-gray-300'
-                }`}
-                aria-label={`Ver testimonio ${index + 1}`}
-              />
-            ))}
-          </div>
+              <div className="flex justify-center mt-8 gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === currentIndex ? 'bg-cerebrum-blue' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Ver testimonio ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
