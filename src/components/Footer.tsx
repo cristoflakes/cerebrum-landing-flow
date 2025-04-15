@@ -1,4 +1,6 @@
+
 import { ArrowUp } from "lucide-react";
+
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -6,8 +8,11 @@ const Footer = () => {
       behavior: 'smooth'
     });
   };
+  
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-cerebrum-black text-white py-12">
+  
+  return (
+    <footer className="bg-cerebrum-black text-white py-12">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-1">
@@ -35,7 +40,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#home" className="text-gray-400 hover:text-white transition-colors">Sobre nosotros</a></li>
               <li><a href="#testimonios" className="text-gray-400 hover:text-white transition-colors">Testimonios</a></li>
-              <li><a href="#planes" className="text-gray-400 hover:text-white transition-colors">Soluciones</a></li>
+              <li><a href="#faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
               <li><a href="#contacto" className="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
             </ul>
           </div>
@@ -68,6 +73,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,12 +14,35 @@ interface DiagnosticFormModalProps {
 
 export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProps) => {
   const { toast } = useToast();
+  const [isDialogOpen, setIsDialogOpen] = useState(isOpen);
   const [formData, setFormData] = useState({
     area: "",
     tools: "",
     goal: "",
     hasTeam: null as boolean | null
   });
+
+  // Listen for custom event to open the modal
+  useEffect(() => {
+    const handleOpenModal = () => {
+      setIsDialogOpen(true);
+    };
+
+    document.addEventListener('openDiagnosticModal', handleOpenModal);
+    return () => {
+      document.removeEventListener('openDiagnosticModal', handleOpenModal);
+    };
+  }, []);
+
+  // Sync with parent's isOpen state
+  useEffect(() => {
+    setIsDialogOpen(isOpen);
+  }, [isOpen]);
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
+    onClose();
+  };
 
   const handleChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -53,7 +76,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
     });
     
     // Cerrar modal y reiniciar formulario
-    onClose();
+    handleClose();
     setFormData({
       area: "",
       tools: "",
@@ -63,7 +86,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isDialogOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Solicitar propuesta personalizada</DialogTitle>

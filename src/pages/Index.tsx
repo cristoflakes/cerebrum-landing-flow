@@ -2,10 +2,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
+import BenefitsSection from "@/components/sections/BenefitsSection";
 import ProductSection from "@/components/sections/ProductSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import PricingSection from "@/components/sections/PricingSection";
+import AboutUsSection from "@/components/sections/AboutUsSection";
+import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
+import FloatingButtons from "@/components/FloatingButtons";
 import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
@@ -15,11 +18,14 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <BenefitsSection />
         <ProductSection />
         <TestimonialsSection />
-        <PricingSection />
+        <AboutUsSection />
+        <FAQSection />
         <ContactSection />
       </main>
+      <FloatingButtons />
       <Footer />
     </div>
   );

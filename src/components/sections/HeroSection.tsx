@@ -1,9 +1,12 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { DiagnosticFormModal } from "@/components/DiagnosticFormModal";
+
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -12,11 +15,14 @@ const HeroSection = () => {
       });
     }
   };
-  return <section id="home" className="min-h-screen flex items-center pt-20 bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef]">
+  
+  return (
+    <section id="home" className="min-h-screen flex items-center pt-20 bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef]">
       <div className="section-padding grid md:grid-cols-2 gap-12 items-center">
         <div className="flex flex-col space-y-6">
+          <span className="text-cerebrum-blue text-lg md:text-xl font-medium italic">Innovación digital</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            Potencia tu empresa con <span className="text-gradient">automatización eficiente</span>
+            Estrategia inteligente, <span className="text-gradient">automatización eficiente</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 max-w-lg">Potencia tu negocio con soluciones personalizadas de automatización y tecnología estratégica.</p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -40,6 +46,8 @@ const HeroSection = () => {
       
       {/* Modal form */}
       <DiagnosticFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
