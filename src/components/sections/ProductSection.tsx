@@ -1,26 +1,12 @@
-
-import { 
-  Brain, 
-  LineChart, 
-  BarChart4, 
-  MessageSquare, 
-  Briefcase, 
-  Users, 
-  Lightbulb, 
-  GraduationCap 
-} from "lucide-react";
-
+import { Brain, LineChart, BarChart4, MessageSquare, Briefcase, Users, Lightbulb, GraduationCap } from "lucide-react";
 const ProductSection = () => {
-  return (
-    <section id="soluciones" className="py-20 bg-white">
+  return <section id="soluciones" className="py-20 bg-white">
       <div className="section-padding">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Soluciones a <span className="text-gradient">tu Medida</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Cada negocio es único. En Cerebrum Flow analizamos tus objetivos y diseñamos una estrategia inteligente, a medida...
-          </p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Cada negocio es único. En Cerebrum Flow analizamos tus objetivos y diseñamos una estrategia inteligente, a medida. Automatización, marketing, consultoría o formación: tú eliges, nosotros lo hacemos realidad</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
@@ -157,8 +143,6 @@ const ProductSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductSection;
