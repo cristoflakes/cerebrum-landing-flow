@@ -1,6 +1,4 @@
-
 import { ArrowUp } from "lucide-react";
-
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -8,20 +6,13 @@ const Footer = () => {
       behavior: 'smooth'
     });
   };
-
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-cerebrum-black text-white py-12">
+  return <footer className="bg-cerebrum-black text-white py-12">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-1">
             <div className="flex items-center mb-4">
-              <img 
-                src="/lovable-uploads/cerebrum-flow-logo.png" 
-                alt="Cerebrum Flow Logo" 
-                className="h-10 w-10 mr-2"
-              />
+              <img alt="Cerebrum Flow Logo" className="h-10 w-10 mr-2" src="/lovable-uploads/043b325f-0b70-40ac-8b3b-c9a450dd5aa6.png" />
               <h2 className="text-2xl font-bold">
                 Cerebrum <span className="text-cerebrum-blue">Flow</span>
               </h2>
@@ -66,30 +57,19 @@ const Footer = () => {
             © {currentYear} Cerebrum Flow. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-4">
-            <a 
-              href="https://www.instagram.com/cerebrumflow" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-              aria-label="Instagram"
-            >
+            <a href="https://www.instagram.com/cerebrumflow" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
               </svg>
             </a>
-            <button 
-              onClick={scrollToTop}
-              className="flex items-center gap-2 text-cerebrum-blue hover:text-blue-400 transition-colors"
-            >
+            <button onClick={scrollToTop} className="flex items-center gap-2 text-cerebrum-blue hover:text-blue-400 transition-colors">
               Volver arriba <ArrowUp size={16} />
             </button>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
