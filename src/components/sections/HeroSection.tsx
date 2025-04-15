@@ -18,10 +18,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             Potencia tu empresa con <span className="text-gradient">automatización eficiente</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-700 max-w-lg">
-            Transformamos tu negocio con soluciones de automatización IA, 
-            marketing digital, consultoría estratégica y formación tecnológica.
-          </p>
+          <p className="text-lg md:text-xl text-gray-700 max-w-lg">Potencia tu negocio con soluciones personalizadas de automatización y tecnología estratégica.</p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button onClick={() => setIsModalOpen(true)} className="bg-cerebrum-blue hover:bg-blue-700 text-white flex items-center gap-2">
               Solicitar propuesta personalizada <ArrowRight size={16} />
