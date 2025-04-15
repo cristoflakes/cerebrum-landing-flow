@@ -17,9 +17,7 @@ const Footer = () => {
                 Cerebrum <span className="text-cerebrum-blue">Flow</span>
               </h2>
             </div>
-            <p className="text-gray-400 mb-4">
-              Transformando empresas con soluciones basadas en inteligencia artificial y estrategias digitales.
-            </p>
+            <p className="text-gray-400 mb-4">Transformando negocios con tecnología inteligente y estrategias innovadoras.</p>
           </div>
           
           <div>
