@@ -6,7 +6,6 @@ import ProductSection from "@/components/sections/ProductSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import AboutUsSection from "@/components/sections/AboutUsSection";
 import FAQSection from "@/components/sections/FAQSection";
-import ContactSection from "@/components/sections/ContactSection";
 import FloatingButtons from "@/components/FloatingButtons";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -21,7 +20,6 @@ const Index = () => {
         <TestimonialsSection />
         <AboutUsSection />
         <FAQSection />
-        <ContactSection />
       </main>
       <FloatingButtons />
       <Footer />

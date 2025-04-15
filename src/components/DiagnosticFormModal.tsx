@@ -21,6 +21,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
     goal: "",
     hasTeam: null as boolean | null
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Listen for custom event to open the modal
   useEffect(() => {
@@ -52,7 +53,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
     setFormData(prev => ({ ...prev, hasTeam }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validación básica
@@ -65,24 +66,55 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
       return;
     }
     
-    // Simulación de envío de datos
-    console.log("Formulario enviado:", formData);
-    
-    // Mensaje de éxito
-    toast({
-      title: "Diagnóstico enviado",
-      description: "Hemos recibido tu información. Nos pondremos en contacto contigo pronto.",
-      variant: "default"
-    });
-    
-    // Cerrar modal y reiniciar formulario
-    handleClose();
-    setFormData({
-      area: "",
-      tools: "",
-      goal: "",
-      hasTeam: null
-    });
+    try {
+      setIsSubmitting(true);
+      
+      // Preparar datos para el webhook
+      const webhookData = {
+        area_apoyo: formData.area,
+        herramientas_uso: formData.tools || "",
+        meta_principal: formData.goal,
+        tiene_equipo: formData.hasTeam === true ? "Sí" : "No"
+      };
+      
+      // Enviar datos al webhook
+      const response = await fetch('https://paneln8n.cerebrumflow.tech/webhook/84ca488a-a121-4e20-bbff-aa9cfce80f73', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
+      }
+      
+      // Mensaje de éxito
+      toast({
+        title: "¡Gracias!",
+        description: "Hemos recibido tu diagnóstico. Pronto nos pondremos en contacto.",
+        variant: "default"
+      });
+      
+      // Cerrar modal y reiniciar formulario
+      handleClose();
+      setFormData({
+        area: "",
+        tools: "",
+        goal: "",
+        hasTeam: null
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu diagnóstico. Por favor intenta nuevamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -103,6 +135,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
             <Select
               value={formData.area}
               onValueChange={(value) => handleChange("area", value)}
+              disabled={isSubmitting}
             >
               <SelectTrigger id="area">
                 <SelectValue placeholder="Selecciona un área" />
@@ -112,6 +145,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
                 <SelectItem value="marketing">Marketing Digital</SelectItem>
                 <SelectItem value="consultoria">Consultoría Empresarial</SelectItem>
                 <SelectItem value="formacion">Formación Tecnológica</SelectItem>
+                <SelectItem value="investigacion">Investigación de mercado</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -125,6 +159,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
               value={formData.tools}
               onChange={(e) => handleChange("tools", e.target.value)}
               placeholder="Ej: WhatsApp Business, Excel, Shopify..."
+              disabled={isSubmitting}
             />
           </div>
           
@@ -138,6 +173,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
               onChange={(e) => handleChange("goal", e.target.value)}
               placeholder="Describe brevemente qué esperas lograr..."
               rows={3}
+              disabled={isSubmitting}
             />
           </div>
           
@@ -151,6 +187,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
                 variant={formData.hasTeam === true ? "default" : "outline"} 
                 onClick={() => handleTeamSelection(true)}
                 className={formData.hasTeam === true ? "bg-cerebrum-blue" : ""}
+                disabled={isSubmitting}
               >
                 Sí
               </Button>
@@ -159,6 +196,7 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
                 variant={formData.hasTeam === false ? "default" : "outline"}
                 onClick={() => handleTeamSelection(false)}
                 className={formData.hasTeam === false ? "bg-cerebrum-blue" : ""}
+                disabled={isSubmitting}
               >
                 No
               </Button>
@@ -166,8 +204,12 @@ export const DiagnosticFormModal = ({ isOpen, onClose }: DiagnosticFormModalProp
           </div>
           
           <DialogFooter className="pt-4">
-            <Button type="submit" className="w-full bg-cerebrum-blue hover:bg-blue-700">
-              Enviar diagnóstico
+            <Button 
+              type="submit" 
+              className="w-full bg-cerebrum-blue hover:bg-blue-700"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Enviando..." : "Enviar diagnóstico"}
             </Button>
           </DialogFooter>
         </form>
