@@ -22,9 +22,10 @@ const ProductSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {/* First row - 3 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {/* Servicio 1 */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col justify-center">
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
                 <Brain className="text-cerebrum-blue" size={28} />
@@ -57,7 +58,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 2 */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col justify-center">
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
                 <LineChart className="text-cerebrum-blue" size={28} />
@@ -90,7 +91,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 3 */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col justify-center">
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
                 <Briefcase className="text-cerebrum-blue" size={28} />
@@ -121,9 +122,15 @@ const ProductSection = () => {
               </div>
             </div>
           </div>
+        </div>
 
+        {/* Second row - 2 centered cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {/* Empty space on the left in desktop */}
+          <div className="hidden lg:block"></div>
+          
           {/* Servicio 4 */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col justify-center">
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
                 <GraduationCap className="text-cerebrum-blue" size={28} />
@@ -156,7 +163,7 @@ const ProductSection = () => {
           </div>
 
           {/* Servicio 5 - Investigación de mercado */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 card-hover border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col justify-center">
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
                 <Search className="text-cerebrum-blue" size={28} />
@@ -187,6 +194,9 @@ const ProductSection = () => {
               </div>
             </div>
           </div>
+          
+          {/* Empty space on the right in desktop */}
+          <div className="hidden lg:block"></div>
         </div>
 
         {/* Botón de solicitar propuesta */}

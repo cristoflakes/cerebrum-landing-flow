@@ -11,7 +11,7 @@ const AboutUsSection = () => {
           </h2>
         </div>
         
-        <Card className="max-w-3xl mx-auto shadow-lg border border-gray-100 bg-white hover:shadow-xl transition-all duration-300">
+        <Card className="max-w-3xl mx-auto shadow-md border border-gray-100 bg-white hover:shadow-xl transition-all duration-300 rounded-xl">
           <CardContent className="pt-6 p-8">
             <p className="text-lg text-gray-700 leading-relaxed text-center">
               En Cerebrum Flow somos un equipo apasionado por la tecnología, la estrategia digital y la automatización inteligente. 
