@@ -7,8 +7,127 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { useEffect, useRef } from "react";
 
 const ProductSection = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Animation for the neural network visualization
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas dimensions for high resolution
+    const setCanvasDimensions = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+
+    // Create neural network nodes
+    const createNodes = (count: number) => {
+      const nodes = [];
+      const width = canvas.width / window.devicePixelRatio;
+      const height = canvas.height / window.devicePixelRatio;
+
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: 2 + Math.random() * 3,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          connections: []
+        });
+      }
+
+      // Create connections between nodes
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          if (Math.random() > 0.85) {
+            nodes[i].connections.push(j);
+          }
+        }
+      }
+
+      return nodes;
+    };
+
+    // Start animation
+    const startAnimation = () => {
+      setCanvasDimensions();
+      const nodes = createNodes(20);
+
+      const animate = () => {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+        
+        // Draw connections first (behind nodes)
+        ctx.strokeStyle = 'rgba(0, 110, 177, 0.2)';
+        ctx.lineWidth = 1;
+        
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i];
+          for (const connectionIndex of node.connections) {
+            const connectedNode = nodes[connectionIndex];
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(connectedNode.x, connectedNode.y);
+            ctx.stroke();
+          }
+        }
+        
+        // Draw nodes
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i];
+          
+          // Update position
+          node.x += node.vx;
+          node.y += node.vy;
+          
+          // Bounce off edges
+          if (node.x <= node.radius || node.x >= (canvas.width / window.devicePixelRatio) - node.radius) {
+            node.vx *= -1;
+          }
+          if (node.y <= node.radius || node.y >= (canvas.height / window.devicePixelRatio) - node.radius) {
+            node.vy *= -1;
+          }
+          
+          // Draw the node
+          const gradient = ctx.createRadialGradient(
+            node.x, node.y, 0,
+            node.x, node.y, node.radius
+          );
+          gradient.addColorStop(0, 'rgba(0, 110, 177, 0.8)');
+          gradient.addColorStop(1, 'rgba(0, 110, 177, 0.2)');
+          
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.fill();
+        }
+        
+        requestAnimationFrame(animate);
+      };
+      
+      animate();
+    };
+
+    startAnimation();
+
+    // Resize event listener
+    window.addEventListener('resize', setCanvasDimensions);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', setCanvasDimensions);
+    };
+  }, []);
+
   return (
     <section id="soluciones" className="py-20 bg-white">
       <div className="section-padding">
@@ -124,45 +243,9 @@ const ProductSection = () => {
           </div>
         </div>
 
-        {/* Second row - 2 centered cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Empty space on the left in desktop */}
-          <div className="hidden lg:block"></div>
-          
-          {/* Servicio 4 */}
-          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
-            <div className="flex items-start gap-4 flex-1">
-              <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
-                <GraduationCap className="text-cerebrum-blue" size={28} />
-              </div>
-              <div className="flex-1 space-y-4">
-                <h3 className="text-xl font-bold">Formación Tecnológica</h3>
-                <p className="text-gray-600">
-                  Programas de capacitación personalizados para equipar a tu equipo con las habilidades digitales necesarias.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-auto">
-                  <div className="flex items-center gap-2">
-                    <Brain size={18} className="text-cerebrum-blue" />
-                    <span className="text-sm">IA y Machine Learning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users size={18} className="text-cerebrum-blue" />
-                    <span className="text-sm">Desarrollo web</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Lightbulb size={18} className="text-cerebrum-blue" />
-                    <span className="text-sm">Análisis de datos</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MessageSquare size={18} className="text-cerebrum-blue" />
-                    <span className="text-sm">Marketing digital</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Servicio 5 - Investigación de mercado */}
+        {/* Second row - 3 cards with animated visualization in the middle */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Servicio 4 - Investigación de mercado (moved to the left) */}
           <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
             <div className="flex items-start gap-4 flex-1">
               <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
@@ -195,8 +278,48 @@ const ProductSection = () => {
             </div>
           </div>
           
-          {/* Empty space on the right in desktop */}
-          <div className="hidden lg:block"></div>
+          {/* Centro: Visualización animada de red neuronal/flujo */}
+          <div className="bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all h-full overflow-hidden relative group">
+            <canvas 
+              ref={canvasRef} 
+              className="w-full h-full absolute inset-0"
+              style={{ minHeight: "100%", minWidth: "100%" }}
+            ></canvas>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50/20 pointer-events-none"></div>
+          </div>
+          
+          {/* Servicio 5 - Formación Tecnológica (moved to the right) */}
+          <div className="bg-gray-50 rounded-xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:translate-y-[-4px] hover:border-blue-200 h-full flex flex-col">
+            <div className="flex items-start gap-4 flex-1">
+              <div className="bg-cerebrum-blue bg-opacity-10 p-3 rounded-full">
+                <GraduationCap className="text-cerebrum-blue" size={28} />
+              </div>
+              <div className="flex-1 space-y-4">
+                <h3 className="text-xl font-bold">Formación Tecnológica</h3>
+                <p className="text-gray-600">
+                  Programas de capacitación personalizados para equipar a tu equipo con las habilidades digitales necesarias.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-auto">
+                  <div className="flex items-center gap-2">
+                    <Brain size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">IA y Machine Learning</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Desarrollo web</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Lightbulb size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Análisis de datos</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MessageSquare size={18} className="text-cerebrum-blue" />
+                    <span className="text-sm">Marketing digital</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Botón de solicitar propuesta */}
